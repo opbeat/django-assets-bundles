@@ -109,7 +109,8 @@ def get_asset_path(logical_path):
     manifest_file_path = getattr(settings, 'ASSETS_MANIFEST_FILE',
                                  DEFAULT_ASSETS_MANIFEST_FILE)
 
-    if getattr(settings, 'ASSETS_CACHE', False) and _MANIFEST_CACHE:
+    should_cache = getattr(settings, 'ASSETS_CACHE', not settings.DEBUG)
+    if should_cache and _MANIFEST_CACHE:
         assets = _MANIFEST_CACHE
     else:
         assets = read_manifest(manifest_file_path)
