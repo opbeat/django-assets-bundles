@@ -2,7 +2,7 @@ import warnings
 
 from django import template
 
-from ..utils import get_asset_url
+from ..readers import get_asset_path
 
 register = template.Library()
 
@@ -16,7 +16,7 @@ def asset(logical_path):
     :param logical_path:
     :return: an asset path
     """
-    asset = get_asset_url(logical_path)
+    asset = get_asset_path(logical_path)
     if not isinstance(asset, basestring):
         warnings.warn("Please use the as_asset filter if your "
                       "pipeline returns lists")
@@ -35,7 +35,7 @@ def as_asset_list(logical_path):
     :param logical_path:
     :return: list of asset paths
     """
-    assets = get_asset_url(logical_path)
+    assets = get_asset_path(logical_path)
     if isinstance(assets, basestring):
         return [assets]
     return assets

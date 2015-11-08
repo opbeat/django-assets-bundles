@@ -49,5 +49,5 @@ setup(
         'Programming Language :: Python :: 3.4',
     ],
     tests_require=test_requirements,
-    test_suite='tests.main',
+    test_suite='runtests',
 )
